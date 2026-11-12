@@ -1,0 +1,12 @@
+https://nwdp.nwic.gov.in/dataset/7bb1e7c7-bcc1-48bb-8bcd-32c19473804a/resource/6f642921-d0ed-4e61-8286-d83fd370c5a9/download/gwq_chemical_parameter_manual_cgwb_jh_1961_2025.csv
+https://nwdp.nwic.gov.in/dataset/7bb1e7c7-bcc1-48bb-8bcd-32c19473804a/resource/ad487f76-51ee-4747-a54f-9e520bdf9076/download/gwq_chemical_parameter_manual_cgwb_jh_2026_2030.csv
+https://nwdp.nwic.gov.in/dataset/7bb1e7c7-bcc1-48bb-8bcd-32c19473804a/resource/d8c9f79d-7dbf-4698-911e-4a5976df5300/download/gwq_chemical_parameter_manual_cgwb_od_1961_2025.csv
+https://nwdp.nwic.gov.in/dataset/7bb1e7c7-bcc1-48bb-8bcd-32c19473804a/resource/ac2b7f03-702c-4693-9b23-f479e2430162/download/gwq_chemical_parameter_manual_cgwb_od_2026_2030.csv
+https://nwdp.nwic.gov.in/dataset/8776ef37-904a-4700-b3e6-6ad4ca62fdc6/resource/b3f5e6ff-e530-4d0b-a0f0-89992eea5224/download/gwq_physical_parameter_manual_cgwb_jh_1961_2025.csv
+https://nwdp.nwic.gov.in/dataset/8776ef37-904a-4700-b3e6-6ad4ca62fdc6/resource/3e4989a3-e536-49e4-9ad5-42e03d9254d6/download/gwq_physical_parameter_manual_cgwb_jh_2026_2030.csv
+https://nwdp.nwic.gov.in/dataset/8776ef37-904a-4700-b3e6-6ad4ca62fdc6/resource/e1a09e55-6570-4029-b815-a3deefcd11f0/download/gwq_physical_parameter_manual_cgwb_od_1961_2025.csv
+https://nwdp.nwic.gov.in/dataset/8776ef37-904a-4700-b3e6-6ad4ca62fdc6/resource/c22b92f5-a083-4112-8996-53e96a3a45dc/download/gwq_physical_parameter_manual_cgwb_od_2026_2030.csv
+https://nwdp.nwic.gov.in/dataset/3782ba15-9b12-46a8-ae44-410b1f84020e/resource/085a1537-75af-4d71-80e2-7bed721668e9/download/gwl_tel_6_hourly_cgwb_jh_2021_2025.csv
+https://nwdp.nwic.gov.in/dataset/3782ba15-9b12-46a8-ae44-410b1f84020e/resource/83339d36-e9b1-4734-8604-b5c5727e5e6e/download/gwl_tel_6_hourly_cgwb_jh_2026_2030.csv
+https://nwdp.nwic.gov.in/dataset/3782ba15-9b12-46a8-ae44-410b1f84020e/resource/a53b8350-2230-432c-93ca-eb57b67f7369/download/gwl_tel_6_hourly_cgwb_od_2021_2025.csv
+https://nwdp.nwic.gov.in/dataset/3782ba15-9b12-46a8-ae44-410b1f84020e/resource/41c4bba1-a67d-421d-941f-b59e1c7691cd/download/gwl_tel_6_hourly_cgwb_od_2026_2030.csv

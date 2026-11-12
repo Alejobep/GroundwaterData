@@ -1,0 +1,6 @@
+https://nwdp.nwic.gov.in/dataset/956add67-cba9-41a5-9d5c-96d73db44aef/resource/9dcefdc5-a56d-43ba-9979-3f8f1558438f/download/gwl_manual_quarterly_cgwb_jh_1991_2020.csv
+https://nwdp.nwic.gov.in/dataset/956add67-cba9-41a5-9d5c-96d73db44aef/resource/7b69bb72-5c7b-4a7a-99d5-ce8ec7f13e30/download/gwl_manual_quarterly_cgwb_jh_2021_2025.csv
+https://nwdp.nwic.gov.in/dataset/956add67-cba9-41a5-9d5c-96d73db44aef/resource/80ce70c1-0ef0-4daa-b0ee-4f67d28430c2/download/gwl_manual_quarterly_cgwb_jh_2026_2030.csv
+https://nwdp.nwic.gov.in/dataset/956add67-cba9-41a5-9d5c-96d73db44aef/resource/bf10433c-7213-401f-9cc3-ba35f1f7adb0/download/gwl_manual_quarterly_cgwb_od_1991_2020.csv
+https://nwdp.nwic.gov.in/dataset/956add67-cba9-41a5-9d5c-96d73db44aef/resource/bdebe9ba-62ad-4c34-acd0-e7f9332dff59/download/gwl_manual_quarterly_cgwb_od_2021_2025.csv
+https://nwdp.nwic.gov.in/dataset/956add67-cba9-41a5-9d5c-96d73db44aef/resource/62c5c7ed-64c4-4420-871b-f8b45532ab59/download/gwl_manual_quarterly_cgwb_od_2026_2030.csv
