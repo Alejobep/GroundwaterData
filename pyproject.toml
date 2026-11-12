@@ -1,0 +1,24 @@
+[project]
+name = "groundwaterdata"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Alejandro Bello-Palacios", email = "49291809+Alejobep@users.noreply.github.com" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "arcgis>=2.4.4,<3",
+    "arcgis-mapping>=5.1.0",
+    "contextily>=1.7.1",
+    "geopandas>=1.2.0",
+    "ipykernel>=7.4.0",
+    "jupyter>=1.1.1",
+]
+
+[project.scripts]
+groundwaterdata = "groundwaterdata:main"
+
+[build-system]
+requires = ["uv_build>=0.13.7,<0.14.0"]
+build-backend = "uv_build"
