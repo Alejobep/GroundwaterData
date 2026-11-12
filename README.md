@@ -6,9 +6,56 @@ for Jharkhand and Odisha, India.
 - [Roadmap](ROADMAP.md): report assessment, phased tasks, map options and release criteria.
 - [Task backlog](planning/tasks.csv): priorities, dependencies, ownership and acceptance criteria.
 - [Source acquisition queue](planning/source_queue.csv): official sources, papers and manual follow-ups.
+- [Catalogue](catalogue/): `sources.csv` inventory, `files.csv` register of original
+  files with checksums, and `data_dictionary.csv` defining columns and vocabularies.
 - [Input reports](input_reports/): the two original desk studies.
 - [CSV coverage notebook](notebooks/data_coverage.ipynb): local inspection and
   a simple ArcGIS-backed visual of station locations against Jharkhand and Odisha.
+
+## Catalogue and file register
+
+`catalogue/sources.csv` holds one row per publication, dataset, portal or
+directory: what it is (`item_type`, `evidence_type`, `format`), who published it
+and when, where it applies (`state`, `area`, `coverage_level`), how far
+acquisition has progressed (`access_status`), and the redistribution decision
+(`rights_status`). `planning/source_queue.csv` remains the acquisition tracker;
+both share `source_id`. `description`, sampling dates and rights stay blank or
+`unknown` until the item has actually been inspected.
+
+Original files are never renamed or edited. Place manual downloads under
+`raw/<source_id>/` (gitignored), keeping the publisher's filename, then run
+
+```sh
+uv run python scripts/register_files.py --retrieved-on 2026-11-13 --filters "describe portal filters"
+```
+
+The script matches files to sources through `local_globs` (default
+`raw/<source_id>/**/*`), appends new rows to `catalogue/files.csv` with size and
+SHA-256, and stops if a file under `raw/` or `downloaded_data/` belongs to no
+source, to two sources, or if a registered original's checksum has changed.
+Use `--dry-run` to preview. Without `--retrieved-on` the file modification date
+is used; `--filters` defaults to `unknown`.
+
+### CGWB publications repository
+
+`cgwb.gov.in` is unreachable from the development container, so
+`scripts/fetch_cgwb_publications.py` is meant to run on a machine with Chrome
+and normal internet access. It walks a repository search (default: all
+Jharkhand publications), records every result in
+`planning/cgwb_search_results.csv` (id, title, posting date, download URL) and
+downloads the PDFs into `downloaded_data/cgwb/jharkhand/` keeping the server
+filenames. Items already marked `downloaded` in `catalogue/sources.csv` are
+skipped. Saved result pages can also be parsed offline with `--from-html`.
+
+```sh
+uv run scripts/fetch_cgwb_publications.py --dry-run   # list only
+uv run scripts/fetch_cgwb_publications.py             # download, then run register_files.py
+# Odisha (state_id=21; Jharkhand is 20)
+uv run scripts/fetch_cgwb_publications.py --search-url "https://cgwb.gov.in/cgwbpnm/search?type=2&cat_id=&state_id=21&district_id=&year_of_issue=&name_of_author=&keywords=&search=search"
+```
+
+Each new PDF needs a `local_globs` entry on its source row before
+`register_files.py` will accept it.
 
 ## Inspect a downloaded CSV
 

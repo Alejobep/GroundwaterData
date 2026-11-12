@@ -1,5 +1,5 @@
 task_id,phase,priority,title,status,proposed_owner,depends_on,acceptance_criteria,effort
-T01,0,P0,Define catalogue and file schemas,pending,implementation,,Stable source and file IDs plus observation and coverage fields documented; seed queue imported without treating links as downloads,0.5 day
+T01,0,P0,Define catalogue and file schemas,in_progress,implementation,,Stable source and file IDs plus observation and coverage fields documented; seed queue imported without treating links as downloads,0.5 day
 T02,0,P0,Reconcile districts blocks and boundary sources,pending,implementation,,24 Jharkhand and 30 Odisha report-listed districts reconciled to dated boundary codes; aliases and partial report coverage recorded; geometry rights checked,0.5-1 day
 T03,0,P0,Define acquisition and sharing rules,pending,user+implementation,T01,Raw preservation and filter recording rules agreed; rights and sensitivity statuses defined; no upload without approval,0.5 day
 T04,1,P0,Acquire pilot official chemistry exports,pending,implementation+user,T01;T03,Try each state export and metadata; validate file type and record filters dates rights checksum; document blockers and manual handoff without claiming acquisition,1-2 days

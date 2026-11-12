@@ -1,1 +1,3 @@
 /downloaded_data/
+/raw/*
+!/raw/.gitkeep

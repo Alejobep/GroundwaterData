@@ -1,0 +1,40 @@
+table,column,required,description,allowed_values_or_format
+sources,source_id,yes,Stable project identifier for one publication dataset portal or directory; never reused or renamed,UPPERCASE-WITH-HYPHENS; matches planning/source_queue.csv and raw/<source_id>/ folder names
+sources,title,yes,Title as given by the publisher or a short working title if unverified,free text
+sources,description,no,What the item actually contains after inspection: districts blocks parameters years tables maps; blank until inspected,free text
+sources,item_type,yes,Kind of item,dataset|report|article|map|portal|directory|guideline
+sources,evidence_type,yes,Evidence stream the item contributes to,chemistry|water_levels|hydrogeology|geology|mineral_exploration|drinking_water_surveillance|hydrometeorology|surface_water|spatial|state_records|literature|methods|report_directory
+sources,format,yes,Primary delivery format,pdf|csv|xlsx|html|geojson|shp|gpkg|wms|api|mixed|unknown
+sources,publisher,yes,Originating agency journal or repository,free text
+sources,author,no,Authors or organisational unit when known,free text
+sources,publication_date,no,Date the item was published or last issued,YYYY or YYYY-MM or YYYY-MM-DD; blank if unknown
+sources,sampling_start,no,Earliest sampling or observation date the item covers; not the publication date,YYYY or YYYY-MM or YYYY-MM-DD; blank if unknown
+sources,sampling_end,no,Latest sampling or observation date the item covers,YYYY or YYYY-MM or YYYY-MM-DD; blank if unknown
+sources,url,no,Landing or official URL; downloaded copies are listed in files.csv,URL
+sources,doi,no,DOI without resolver prefix when the item has one,10.xxxx/...
+sources,access_status,yes,Latest acquisition outcome,identified|access_checked|downloaded|extraction_complete|qa_reviewed|blocked|unavailable|reference_missing
+sources,access_detail,no,Evidence for access_status such as HTTP code timeout or manual handoff,free text
+sources,acquisition_route,yes,How the item is or was obtained,free text drawn from planning/source_queue.csv
+sources,checked_on,no,Date the url or route was last checked,YYYY-MM-DD
+sources,retrieved_on,no,Date the first file for this source was obtained,YYYY-MM-DD
+sources,state,yes,States the item concerns,Jharkhand|Odisha|Jharkhand;Odisha|none (downloaded but covers neither state)
+sources,area,no,Districts and blocks named by the source using the source spelling,State:District:Block entries separated by ; (e.g. Odisha:Balasore:Remuna)
+sources,coverage_level,yes,Best verified geographic evidence dimension,district_context|named_blocks|study_footprint|station_points|statewide|out_of_scope|unknown
+sources,rights_status,yes,Redistribution decision for the original files,official_public|open_licence|copyright_private_use|restricted|unknown
+sources,rights_notes,no,Licence text terms or reason for the rights_status,free text
+sources,citation,no,Citation to show recipients when the file itself is not redistributable,free text
+sources,local_globs,no,Glob patterns selecting this source's original files; register_files.py scans them,relative globs separated by ; (e.g. downloaded_data/nwdp/odisha/gwl_*.csv); defaults to raw/<source_id>/**/*
+sources,priority,yes,Backlog priority,P0|P1|P2
+sources,task_id,yes,Task in planning/tasks.csv that acquires or processes this source,T01..T17
+sources,limitations,no,Known caveats for recipients such as summary-only tables or partial footprint,free text
+sources,notes,no,Working notes,free text
+files,file_id,yes,Stable identifier assigned on first registration,F followed by four digits
+files,source_id,yes,Source the file belongs to,sources.source_id
+files,original_filename,yes,Filename as delivered; never renamed on disk,free text
+files,local_path,yes,Path relative to repository root,relative path
+files,format,yes,File format from extension,pdf|csv|xlsx|xls|zip|geojson|shp|gpkg|html|json|txt|docx|other
+files,size_bytes,yes,File size at registration,integer
+files,sha256,yes,SHA-256 of the file at registration; a later mismatch means the original was altered,64 hex characters
+files,retrieved_on,yes,Date the file was downloaded or received,YYYY-MM-DD
+files,filters_applied,no,Portal filters used for an export such as state agency category frequency and date range,free text; unknown if not recorded
+files,notes,no,Working notes,free text
