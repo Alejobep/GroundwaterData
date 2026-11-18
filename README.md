@@ -69,6 +69,15 @@ The first downloaded chemistry file contains 113,586 Tamil Nadu records and
 compares state labels with coordinates and shows both an overview and a target
 zoom. This is coverage screening, not a water-quality risk map or release package.
 
+## Preview the interactive boundary map
+
+From the repository root, run `uv run python src/groundwaterdata/test.py` and
+open `map.html` in a browser. The Jharkhand and Odisha boundary layers draw
+thin district lines and overlay thicker state outlines computed by merging
+each state's districts. The layer menu groups overlays under **Political
+Boundaries** and **Study Areas**, with a separate checkbox for each state in
+each group.
+
 ## Large Odisha water-level files
 
 The CSV-loading cell in [simple.notebook.ipynb](notebooks/simple.notebook.ipynb)
@@ -84,21 +93,23 @@ values require source metadata before interpretation.
 
 ## Collect locations for mapping
 
-Run `uv run python scripts/collect_locations.py` to scan all CSVs under
-`data/odisha/` and `data/jharkhand/`
-and write `data/station_locations.csv`. The script streams rows using Python's
-standard CSV reader and retains only unique agency/station/state/district/
-coordinate/category/data-type combinations. Generated files outside the state
-folders are not scanned.
+Run `uv run python scripts/collect_locations.py` to recursively scan all CSVs
+under `downloaded_data/nwdp/` and write `data/station_locations.csv`. The script
+streams rows using Python's standard CSV reader and retains only unique agency/station/state/district/
+coordinate/category/data-type combinations. Files outside the NWDP folder
+are not scanned.
 Different stations at the same coordinates and changed station locations remain
 separate records; equivalent numeric coordinate spellings are deduplicated.
-Missing required columns or invalid coordinates stop with a file/line error
-rather than silently omitting records. Source CSVs remain unchanged.
+Rows with blank coordinates cannot be mapped and are skipped with a per-file
+warning. Missing required columns or malformed or out-of-range coordinates
+stop the run with an error. Source CSVs remain unchanged.
 
 `Category` describes the measured quantity, such as `groundwater_level`,
-`river_water_level`, `rainfall` or `air_temperature`. `Data Type` describes its
-method/frequency: `manual_quarterly`, `manual_daily`, `telemetry_6_hourly` or
-`telemetry_hourly`. Header mappings are shared across states. Multi-measurement
+`river_water_level`, `rainfall` or `air_temperature`. Chemical and physical
+groundwater-quality exports have separate categories. `Data Type` describes
+its method/frequency: `manual_quarterly`, `manual_daily`, `telemetry_6_hourly`,
+`telemetry_hourly`, or `manual` for quality exports without a declared
+frequency. Header mappings are shared across states. Multi-measurement
 river files contribute to each recognized category, and equivalent discharge
 headers share one category. The historical `Quadridaily` header is grouped with
 six-hourly telemetry. Files without recognized measurement headers fail explicitly.
@@ -145,9 +156,8 @@ Confirm the source coordinate datum before assigning WGS84. Add the plotting
 line before `plt.show()` in the map cell. The output is a coverage inventory,
 not validated water-level or chemistry data.
 Optionally filter `Data Type` before plotting to show one method/frequency.
-The current downloads contain groundwater-level categories only for Odisha
-and river/weather categories only for Jharkhand; missing state/category coverage
-means not present in the local archive, not that such data do not exist.
+Missing state/category coverage means not present in the local archive,
+not that such data do not exist.
 To inspect overlaps, use `locations[locations["Shared Location"]]`; use separate
 map layers or panels to see coincident points that otherwise obscure each other.
 

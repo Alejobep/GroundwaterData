@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Schema name="study_area_jharkhand" id="study_area_jharkhand">
+	<SimpleField name="id" type="float"></SimpleField>
+</Schema>
+<Folder><name>study_area_jharkhand</name>
+  <Placemark id="study_area_jharkhand.1">
+	<Style><LineStyle><color>FF1c1ae3</color><width>1.87086</width></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#study_area_jharkhand">
+		<SimpleData name="id">1</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Polygon><outerBoundaryIs><LinearRing><coordinates>83.7572894271297,21.8589296780132 83.7716951558168,23.4310166202182 86.584413681976,23.4277121226546 86.6060222750067,21.8555871375391 83.7572894271297,21.8589296780132</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry>
+  </Placemark>
+</Folder>
+</Document></kml>

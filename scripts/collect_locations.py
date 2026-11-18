@@ -4,6 +4,7 @@ import csv
 import math
 from collections import Counter
 from pathlib import Path
+from sys import stderr
 
 
 COLUMNS = ("Agency", "Station", "State", "District", "Latitude", "Longitude")
@@ -11,6 +12,8 @@ MEASUREMENTS = {
     "Groundwater Level Quarterly Manual (meter)": ("groundwater_level", "manual_quarterly"),
     "Groundwater Level Telemetry 6 Hourly (meter)": ("groundwater_level", "telemetry_6_hourly"),
     "Groundwater Level Telemetry Quadridaily (meter)": ("groundwater_level", "telemetry_6_hourly"),
+    "Potential of Hydrogen (pH)": ("groundwater_quality_chemical", "manual"),
+    "Turbidity (NTU)": ("groundwater_quality_physical", "manual"),
     "Telemetry Hourly Relative Humidity (%)": ("relative_humidity", "telemetry_hourly"),
     "Telemetry_Hourly_Atmospheric Pressure (mb)": ("atmospheric_pressure", "telemetry_hourly"),
     "Telemetry Hourly Rainfall (mm)": ("rainfall", "telemetry_hourly"),
@@ -36,6 +39,7 @@ TypedLocation = tuple[str, str, str, str, float, float, str, str]
 def collect_locations(files: list[Path]) -> list[TypedLocation]:
     locations: set[TypedLocation] = set()
     for path in files:
+        missing_coordinates = 0
         encoding = ENCODINGS.get(path.name, "utf-8-sig")
         if encoding != "utf-8-sig":
             print(f"Reading {path.name} with explicit {encoding} encoding")
@@ -49,26 +53,34 @@ def collect_locations(files: list[Path]) -> list[TypedLocation]:
                 raise ValueError(f"{path}: no recognized measurement columns")
             categories = {MEASUREMENTS[header] for header in measurement_headers}
             for row in reader:
+                raw_latitude, raw_longitude = row["Latitude"], row["Longitude"]
                 try:
-                    latitude = float(row["Latitude"])
-                    longitude = float(row["Longitude"])
+                    if raw_latitude is None or raw_longitude is None:
+                        raise ValueError("missing coordinate fields")
+                    latitude = float(raw_latitude) if raw_latitude.strip() else None
+                    longitude = float(raw_longitude) if raw_longitude.strip() else None
                 except (TypeError, ValueError) as error:
                     raise ValueError(
                         f"{path}, line {reader.line_num}: invalid coordinates"
                     ) from error
                 if not (
-                    math.isfinite(latitude) and -90 <= latitude <= 90
-                    and math.isfinite(longitude) and -180 <= longitude <= 180
+                    (latitude is None or math.isfinite(latitude) and -90 <= latitude <= 90)
+                    and (longitude is None or math.isfinite(longitude) and -180 <= longitude <= 180)
                 ):
                     raise ValueError(
                         f"{path}, line {reader.line_num}: coordinates out of range"
                     )
+                if latitude is None or longitude is None:
+                    missing_coordinates += 1
+                    continue
                 point = (
                     row["Agency"], row["Station"], row["State"], row["District"],
                     latitude, longitude,
                 )
                 for category, data_type in categories:
                     locations.add((*point, category, data_type))
+        if missing_coordinates:
+            print(f"{path}: skipped {missing_coordinates:,} rows with blank coordinates", file=stderr)
         print(f"Read {path.name}; {len(locations):,} unique locations so far")
     return sorted(locations)
 
@@ -94,14 +106,14 @@ def report_overlap(locations: list[TypedLocation]) -> set[CategorizedLocation]:
 
 
 def main() -> None:
-    data = Path(__file__).resolve().parents[1] / "data"
-    output = data / "station_locations.csv"
+    root = Path(__file__).resolve().parents[1]
+    source = root / "downloaded_data" / "nwdp"
+    output = root / "data" / "station_locations.csv"
     files = sorted(
-        path for state in ("odisha", "jharkhand")
-        for path in (data / state).rglob("*.csv")
+        path for path in source.rglob("*.csv", case_sensitive=False) if path.is_file()
     )
     if not files:
-        raise FileNotFoundError(f"No input CSVs found under {data}")
+        raise FileNotFoundError(f"No input CSVs found under {source}")
     locations = collect_locations(files)
     shared = report_overlap(locations)
     with output.open("w", encoding="utf-8", newline="") as stream:

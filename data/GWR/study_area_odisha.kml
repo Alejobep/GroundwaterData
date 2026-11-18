@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Schema name="study_area_odisha" id="study_area_odisha">
+	<SimpleField name="id" type="float"></SimpleField>
+</Schema>
+<Folder><name>study_area_odisha</name>
+  <Placemark id="study_area_odisha.1">
+	<Style><LineStyle><color>FF1c1ae3</color><width>1.87086</width></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#study_area_odisha">
+		<SimpleData name="id">1</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Polygon><outerBoundaryIs><LinearRing><coordinates>82.0250005525041,18.9667098982245 82.8551306680991,18.9667098982245 82.873137828958,18.2294298720918 82.0159969720746,18.2174570743201 82.0250005525041,18.9667098982245</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry>
+  </Placemark>
+</Folder>
+</Document></kml>
