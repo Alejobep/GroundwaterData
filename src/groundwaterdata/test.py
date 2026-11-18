@@ -99,29 +99,44 @@ GroupedLayerControl(
 import pandas as pd
 import folium
 
-df = pd.read_csv("data/station_locations.csv")
+# df = pd.read_csv("data/station_locations.csv")
 
-# Drop rows without coordinates; treat missing categories as "Uncategorized"
-df = df.dropna(subset=["Latitude", "Longitude"]).copy()
-df["Category"] = df["Category"].fillna("Uncategorized").astype(str)
+# # Drop rows without coordinates; treat missing categories as "Uncategorized"
+# df = df.dropna(subset=["Latitude", "Longitude"]).copy()
+# df["Category"] = df["Category"].fillna("Uncategorized").astype(str)
 
 
-for category, group in df.groupby("Category"):
-    layer = folium.FeatureGroup(name=category)
+# for category, group in df.groupby("Category"):
+#     layer = folium.FeatureGroup(name=category)
 
-    for _, row in group.iterrows():
-        folium.CircleMarker(
-            location=[row["Latitude"], row["Longitude"]],
-            radius=5,
-            popup=category,
-            tooltip=category,
-            fill=True,
-        ).add_to(layer)
+#     for _, row in group.iterrows():
+#         folium.CircleMarker(
+#             location=[row["Latitude"], row["Longitude"]],
+#             radius=5,
+#             popup=category,
+#             tooltip=category,
+#             fill=True,
+#         ).add_to(layer)
 
-    layer.add_to(m)
+#     layer.add_to(m)
 
-folium.LayerControl(collapsed=False).add_to(m)
+# folium.LayerControl(collapsed=False).add_to(m)
 
+
+jharkhand_df = pd.read_csv("data/station_locations.csv")
+odisha_df = pd.read_csv("data/odisha_locations.csv")
+
+for idx, row in jharkhand_df.iterrows():
+    folium.CircleMarker(
+        location=[row["Latitude"], row["Longitude"]],
+        fill=True,
+    ).add_to(m)
+    
+for idx, row in odisha_df.iterrows():
+    folium.CircleMarker(
+        location=[row["Latitude"], row["Longitude"]],
+        fill=True,
+    ).add_to(m)
 
 
 
