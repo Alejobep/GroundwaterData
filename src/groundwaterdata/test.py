@@ -6,6 +6,8 @@ import geopandas as gpd
 import pandas as pd
 from folium.plugins import GroupedLayerControl, MarkerCluster
 
+from groundwaterdata.study_areas import load_districts, overlapping_districts
+
 points = pd.read_csv("data/station_locations.csv").dropna(
     subset=["Latitude", "Longitude"]
 )
@@ -79,6 +81,75 @@ odisha_pol_bound_path = data_path / "polygons" / "odisha.geojson"
 jharkhand_study_area_path = data_path / "GWR" / "study_area_jharkhand.geojson"
 odisha_study_area_path = data_path / "GWR" / "study_area_odisha.geojson"
 
+def draw_overlapping_districts(
+    study_area_path: Path, district_paths: list[Path], color: str, layer_name: str
+) -> folium.FeatureGroup:
+    hits = overlapping_districts(study_area_path, load_districts(district_paths))
+    layer = folium.FeatureGroup(name=layer_name).add_to(m)
+    folium.GeoJson(
+        hits[["st_nm", "district", "dt_code", "overlap_km2", "pct_of_district", "pct_of_study_area", "geometry"]].round(1),
+        style_function=lambda _: {
+            "color": color, "weight": 2, "fillColor": color, "fillOpacity": 0.25,
+        },
+        highlight_function=lambda _: {"weight": 3, "fillOpacity": 0.45},
+        tooltip=folium.GeoJsonTooltip(
+            fields=["district", "st_nm", "overlap_km2", "pct_of_district", "pct_of_study_area"],
+            aliases=["District", "State", "Overlap (km²)", "% of district", "% of study area"],
+        ),
+    ).add_to(layer)
+    return layer
+
+
+def draw_wris_layer(path: Path, color: str, layer_name: str) -> folium.FeatureGroup:
+    """Filtered WRIS points from filter_wris_by_study_area.py; hollow markers are buffer-only."""
+    layer = folium.FeatureGroup(name=layer_name).add_to(m)
+    gdf = gpd.read_file(path)
+    if gdf.empty:
+        return layer
+
+    fields = [
+        "Location", "Block", "District", "State", "Major_Lithology",
+        "Depth_of_Drill__m_", "Static_Water_Level__mbgl_", "Year_of_Drill", "distance_km",
+    ]
+    aliases = [
+        "Location", "Block", "District", "State", "Major lithology",
+        "Drill depth (m)", "SWL (m bgl)", "Year drilled", "Distance to outline (km)",
+    ]
+    folium.GeoJson(
+        gdf[fields + ["inside_study_area", "geometry"]],
+        marker=folium.CircleMarker(radius=5, weight=2),
+        style_function=lambda feature: {
+            "color": color,
+            "fillColor": color,
+            "fillOpacity": 0.8 if feature["properties"]["inside_study_area"] else 0.0,
+        },
+        highlight_function=lambda _: {"radius": 8, "weight": 3},
+        tooltip=folium.GeoJsonTooltip(fields=fields, aliases=aliases),
+    ).add_to(layer)
+    return layer
+
+
+def draw_locations(path: Path, color: str, layer_name: str) -> folium.FeatureGroup:
+    """Station locations inside a study area (from the notebook's 10 km filter)."""
+    layer = folium.FeatureGroup(name=layer_name).add_to(m)
+    locations = pd.read_csv(path).dropna(subset=["Latitude", "Longitude"])
+    for row in locations.itertuples(index=False):
+        folium.CircleMarker(
+            location=[row.Latitude, row.Longitude],
+            radius=2.5,
+            color=color,
+            weight=1,
+            fill=True,
+            fill_color=color,
+            fill_opacity=0.7,
+            tooltip=f"{row.Latitude:.5f}, {row.Longitude:.5f}",
+        ).add_to(layer)
+    return layer
+
+
+district_paths = [jharkhand_pol_bound_path, odisha_pol_bound_path]
+wris_path = data_path / "wris"
+
 GroupedLayerControl(
     groups={
         "Political Boundaries": [
@@ -89,56 +160,21 @@ GroupedLayerControl(
             draw_study_area(jharkhand_study_area_path, "#3388ff", "Jharkhand"),
             draw_study_area(odisha_study_area_path, "#ff5733", "Odisha"),
         ],
+        "Overlapping Districts": [
+            draw_overlapping_districts(jharkhand_study_area_path, district_paths, "#9b59b6", "Jharkhand study area"),
+            draw_overlapping_districts(odisha_study_area_path, district_paths, "#f39c12", "Odisha study area"),
+        ],
+        "WRIS Lithologs (10 km buffer)": [
+            draw_wris_layer(wris_path / "jharkhand_study_area" / "Litholog.geojson", "#1b7837", "Jharkhand"),
+            draw_wris_layer(wris_path / "odisha_study_area" / "Litholog.geojson", "#b2182b", "Odisha"),
+        ],
+        "NWDP Locations (10 km buffer)": [
+            draw_locations(data_path / "jharkhand_locations.csv", "#3388ff", "Jharkhand"),
+            draw_locations(data_path / "odisha_locations.csv", "#ff5733", "Odisha"),
+        ],
     },
     exclusive_groups=False,
     base_layers=[basemap],
 ).add_to(m)
-
-
-
-import pandas as pd
-import folium
-
-# df = pd.read_csv("data/station_locations.csv")
-
-# # Drop rows without coordinates; treat missing categories as "Uncategorized"
-# df = df.dropna(subset=["Latitude", "Longitude"]).copy()
-# df["Category"] = df["Category"].fillna("Uncategorized").astype(str)
-
-
-# for category, group in df.groupby("Category"):
-#     layer = folium.FeatureGroup(name=category)
-
-#     for _, row in group.iterrows():
-#         folium.CircleMarker(
-#             location=[row["Latitude"], row["Longitude"]],
-#             radius=5,
-#             popup=category,
-#             tooltip=category,
-#             fill=True,
-#         ).add_to(layer)
-
-#     layer.add_to(m)
-
-# folium.LayerControl(collapsed=False).add_to(m)
-
-
-jharkhand_df = pd.read_csv("data/jharkhand_locations.csv")
-odisha_df = pd.read_csv("data/odisha_locations.csv")
-
-for idx, row in jharkhand_df.iterrows():
-    folium.CircleMarker(
-        location=[row["Latitude"], row["Longitude"]],
-        fill=True,
-    ).add_to(m)
-    
-for idx, row in odisha_df.iterrows():
-    folium.CircleMarker(
-        location=[row["Latitude"], row["Longitude"]],
-        fill=True,
-    ).add_to(m)
-
-
-
 
 m.save("map.html")

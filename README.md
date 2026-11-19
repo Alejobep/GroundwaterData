@@ -197,3 +197,41 @@ location lists carry fewer decimals than the eight-decimal NWDP exports. Rows
 are copied unchanged into `data/nwdp/<name>/`, one file per group that has
 matches; `filter_log.csv` gives rows and locations per group and
 `unmatched_locations.csv` lists locations found in no merged file.
+
+## Source coverage by district
+
+Run `uv run python scripts/build_coverage.py` to write `catalogue/coverage.csv`,
+one row per publication file (CGWB reports under `downloaded_data/cgwb/` and
+journal articles under `downloaded_data/papers/`) and administrative area it
+covers. Each row carries `file_id` and `local_path` so the opaque download names
+(for example `1742896698840549400file.pdf` or `1-s2.0-S2212613915000355-main.pdf`)
+can be read off directly, plus `sampling_start`/`sampling_end` where the catalogue
+records them (mainly articles). The `area`
+field of `sources.csv` (`State:District` or `State:District:Block` tokens) is
+parsed and district spellings are canonicalised to those in `data/polygons/`;
+sources without an `area` are recorded at state scope, and the file under
+`downloaded_data/cgwb/national/` at national scope. Each district row is joined
+to the districts intersecting the GWR study-area outlines, computed in
+`src/groundwaterdata/study_areas.py` (equal-area EPSG:7755, districts under
+1 % overlap dropped); the map in `src/groundwaterdata/test.py` highlights the
+same districts, so the table and the map cannot drift apart. The run prints the
+study-area districts that still lack a district-focused report or article, and
+the articles whose footprint touches a study area. Statewide year
+books enumerate every district in `area`, so filter on `coverage_level` when
+counting district-level evidence. Filter on `item_type` (`report`/`article`) to
+separate the two collections.
+
+The same run also writes `catalogue/coverage_by_file.csv`: the long table
+collapsed to exactly one row per registered PDF (145 files), with
+`original_filename`, `sha256` and `size_bytes` from `files.csv` and the
+districts, blocks and study areas as `;`-separated lists. Use this one to index
+the PDFs held in an external repository; use `coverage.csv` when you need to
+filter by district.
+
+`uv run python scripts/pack_study_area_files.py` zips the files with
+`in_study_area == True` (75 PDFs, ~445 MB) into
+`downloaded_data/study_area_publications.zip`, preserving the
+`downloaded_data/...` tree and embedding the matching `coverage_by_file.csv`
+rows as a manifest. Each file's SHA-256 is checked against `files.csv` before
+it is added. `--scope district block` keeps only district-focused files and
+`--output` changes the destination.

@@ -38,3 +38,41 @@ files,sha256,yes,SHA-256 of the file at registration; a later mismatch means the
 files,retrieved_on,yes,Date the file was downloaded or received,YYYY-MM-DD
 files,filters_applied,no,Portal filters used for an export such as state agency category frequency and date range,free text; unknown if not recorded
 files,notes,no,Working notes,free text
+coverage,source_id,yes,Source the row describes (CGWB report or journal article),sources.source_id
+coverage,file_id,yes,Registered file for the source,files.file_id
+coverage,local_path,yes,Repository-relative path of the registered file (its basename is the download name); a source with two registered copies appears once per file,files.local_path
+coverage,title,yes,Source title copied for readability,free text
+coverage,item_type,yes,Copied from sources; report = CGWB publication; article = journal paper,sources.item_type
+coverage,coverage_level,yes,Copied from sources; statewide year books list every district so district rows with station_points or statewide are enumeration not district reports,sources.coverage_level
+coverage,publication_date,no,Copied from sources,YYYY or YYYY-MM or YYYY-MM-DD
+coverage,sampling_start,no,Copied from sources; first sampling date reported (mostly filled for articles),YYYY or YYYY-MM
+coverage,sampling_end,no,Copied from sources; last sampling date reported (mostly filled for articles),YYYY or YYYY-MM
+coverage,scope,yes,Administrative level of this row,national|state|district|block
+coverage,state,no,State name; blank for national scope,Jharkhand|Odisha
+coverage,district,no,District spelled as in data/polygons/; blank for state or national scope,free text
+coverage,block,no,Block name as given when the source names blocks,free text
+coverage,area_as_given,no,Original sources.area token before canonical spelling,State:District or State:District:Block
+coverage,study_area,no,GWR outline the district intersects at 1 percent or more of its area; for state rows every outline touching the state,jharkhand|odisha|jharkhand;odisha|blank
+coverage,pct_of_district,no,Share of the district inside the study-area outline computed in EPSG:7755,percent one decimal
+coverage,in_study_area,yes,True when the district intersects an outline or the row is state or national scope,True|False
+coverage_by_file,file_id,yes,Registered file; one row per PDF so this table can index the files in an external repository,files.file_id
+coverage_by_file,source_id,yes,Source the file belongs to,sources.source_id
+coverage_by_file,local_path,yes,Repository-relative path of the file,files.local_path
+coverage_by_file,original_filename,yes,File name as downloaded,files.original_filename
+coverage_by_file,sha256,yes,SHA-256 of the file for matching copies held elsewhere,files.sha256
+coverage_by_file,size_bytes,yes,File size in bytes,files.size_bytes
+coverage_by_file,title,yes,Source title copied for readability,free text
+coverage_by_file,item_type,yes,Copied from sources; report = CGWB publication; article = journal paper,sources.item_type
+coverage_by_file,coverage_level,yes,Copied from sources,sources.coverage_level
+coverage_by_file,publication_date,no,Copied from sources,YYYY or YYYY-MM or YYYY-MM-DD
+coverage_by_file,sampling_start,no,Copied from sources,YYYY or YYYY-MM
+coverage_by_file,sampling_end,no,Copied from sources,YYYY or YYYY-MM
+coverage_by_file,scope,yes,Finest administrative level the file names,national|state|district|block
+coverage_by_file,states,no,States covered,Jharkhand|Odisha|Jharkhand;Odisha
+coverage_by_file,n_districts,yes,Number of distinct districts named; 0 for state or national scope,integer
+coverage_by_file,districts,no,Districts named spelled as in data/polygons/,semicolon-separated names
+coverage_by_file,blocks,no,Blocks named by the source,semicolon-separated District:Block
+coverage_by_file,study_areas,no,GWR outlines the file touches via a named district or via statewide scope,jharkhand|odisha|jharkhand;odisha|blank
+coverage_by_file,n_districts_in_study_area,yes,Number of named districts intersecting a study-area outline,integer
+coverage_by_file,districts_in_study_area,no,Named districts intersecting a study-area outline,semicolon-separated names
+coverage_by_file,in_study_area,yes,True when any coverage row of the file is in a study area,True|False

@@ -1,0 +1,85 @@
+GmlID,objectid,Lithology_Code,CGWB_Well_Serial_No,Temporal_water_level,Year_of_observation,Distance_of_Observation_Well,Basin,State,District,Block,Location,Latitude,Longitude,Well_Type,Year_of_Drill,Depth_of_Drill__m_,Depth_of_Construction__mbgl_,Depth_of_Bedrock__mbgl_,Major_Lithology,Static_Water_Level__mbgl_,Discharge__lps_,Draw_Down__m_,Transmissivity__m2_day_,Storage_coefficient,Specific_Capacity__lpm_m_DD_,Electrical_Conductivity__Micro_Seimens__cm_,Chloride__mg_l_,Zones_Tapped__mbgl_,Nitrate__mg_l_,Fluoride__mg_l_,Iron__mg_l_,inside_study_area,distance_km
+LITHOLOG.2019,2019,L03312,412.0,2.03,2005.0,2.729511,2A,WB,Puruliya,Kashipur,Kashipur,23.424461,86.668742,01,NA,,NA,NA,Garnetiferous Schist,,0.05,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,False,8.61
+LITHOLOG.2021,2021,L03314,414.0,2.29,2005.0,1.59035,2A,WB,Puruliya,Manbazar -I,Mogalda,23.075739,86.647403,01,NA,,NA,NA,Granite Gneiss,,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,False,5.95
+LITHOLOG.2022,2022,L03315,415.0,2.29,2005.0,3.661027,2A,WB,Puruliya,Manbazar -I,Manbazar,23.078114,86.686456,01,NA,,NA,NA,Granite Gneiss,,6.64,8.675,NA,NA,NA,NA,NA,NA,NA,NA,NA,False,9.95
+LITHOLOG.2023,2023,L03316,416.0,2.76,2005.0,3.54292,2A,WB,Puruliya,Balarampur,Salboni,23.083661,86.268919,01,NA,,NA,NA,Meta Sediments,,3.21,19.1,NA,NA,NA,NA,NA,NA,NA,NA,NA,True,0.0
+LITHOLOG.2024,2024,L03317,417.0,4.39,2005.0,2.181063,2A,WB,Puruliya,Para,Anara,23.491564,86.562056,01,NA,,NA,NA,Granite Gneiss,,1.11,15,NA,NA,NA,NA,NA,NA,NA,NA,NA,False,7.04
+LITHOLOG.3774,3774,L04649,,,,,2A,JH,Bokaro,Jaridih,Baski,23.5006,85.96479,04,2017-18,200.0,200,NA,Granite Gneiss,0.59,13.18,2.68,NA,320,NA,13,NA,11.62,1.4,NA,NA,False,7.51
+LITHOLOG.3775,3775,L04650,,,,,2A,JH,Bokaro,Jaridih,Chilgada,23.5006,85.96328,04,2017-18,200.0,200,NA,Granite Gneiss,0.78,8.68,5.39,NA,359,NA,10,3,9.92,1,NA,NA,False,7.51
+LITHOLOG.3796,3796,L04671,,,,,07,JH,Khunti,Karra,"Filtration Plant,Dorma",23.0167,85.0,04,2013-14,74.3,74.3,NA,Chotanagpur Granite Gneiss,8.0,"MW-20.59,  OW-10.72",23.31,NA,258,NA,7.1,2.1,5.62,0.28,NA,NA,True,0.0
+LITHOLOG.3797,3797,L04672,,,,,06,JH,Khunti,Khunti," Ram Mandir Campus,Guitjora Village",23.1467,85.231944,04,2013-14,132.2,132.2,NA,Chotanagpur Granite Gneiss,5.0,20.25,15,NA,292,NA,7.1,0.7,7.6,0.33,NA,NA,True,0.0
+LITHOLOG.3798,3798,L04673,,,,,06,JH,Khunti,Khunti,"Imd,Ranchi",23.1469,85.232222,04,2014-15,175.35,175.35,NA,Chotanagpur Granite Gneiss,0.5,null,NA,NA,NA,NA,NA,NA,9.67,NA,NA,NA,True,0.0
+LITHOLOG.3799,3799,L04674,,,,,07,JH,Khunti,Khunti,"Utkramit Middle School Campus,Dumardagga",23.1181,85.220556,04,2013-14,178.1,178.1,NA,Chotanagpur Granite Gneiss,,null,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,True,0.0
+LITHOLOG.3800,3800,L04675,,,,,07,JH,Khunti,Murhu,Chatradih,22.91009,85.3175,04,2017-18,190.8,190.8,NA,Rajmahal Basalt,,null,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,True,0.0
+LITHOLOG.3801,3801,L04676,,,,,07,JH,Khunti,Murhu,"Utkramit Middle School Campus,Pelloal",23.0325,85.238056,04,2013-14,173.8,173.8,NA,Chotanagpur Granite Gneiss,6.6,"MW-15.74, OW1-7.77, OW2-15.24",25.15,NA,106,NA,7.1,NA,3.18,0.5,NA,NA,True,0.0
+LITHOLOG.3805,3805,L04680,,,,,2A,JH,Latehar,Mahuadanr,Gangupara,23.4511,84.05,04,2014-15,138.56,138.56,NA,Chotanagpur Granite Gneiss,4.5,null,NA,NA,NA,NA,NA,NA,5.23,NA,NA,NA,False,2.01
+LITHOLOG.3806,3806,L04681,,,,,07,JH,Lohardaga,Bhandra,Bhandra Block Office Campus,23.3583,84.779167,04,2014-15,153.8,153.8,NA,Chotanagpur Granite Gneiss,3.9,null,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,True,0.0
+LITHOLOG.3813,3813,L04688,,,,,07,JH,Pashchimi Singhbhum,Jagannathpur,"Inter College,Jaganathpur",22.2228,85.622778,04,2017-18,153.8,153.8,NA,Granite Gneiss,4.5,null,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,True,0.0
+LITHOLOG.3814,3814,L04689,,,,,07,JH,Pashchimi Singhbhum,Hatgamaria,"Balandia High School,Hatgamharia",22.2492,85.806944,04,2017-18,147.4,147.4,NA,Granite Gneiss,4.5,null,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,True,0.0
+LITHOLOG.3815,3815,L04690,,,,,06,JH,Pashchimi Singhbhum,Khuntpani,"Jawahar Navodaya Vidyalya,Jhinkpani",22.6667,85.763,04,2016-17,153.8,153.8,NA,Granite Gneiss,3.4,null,NA,NA,NA,NA,NA,NA,14.2,NA,NA,NA,True,0.0
+LITHOLOG.3816,3816,L04691,,,,,06,JH,Pashchimi Singhbhum,Kumardungi,"High School,Kumardungi 1",22.1475,85.900833,04,2017-18,153.5,153.5,NA,Granite Gneiss,,null,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,True,0.0
+LITHOLOG.3817,3817,L04692,,,,,06,JH,Pashchimi Singhbhum,Kumardungi,"High School,Kumardungi 2",22.1475,85.900833,04,2017-18,123.0,123,NA,Granite Gneiss,,null,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,True,0.0
+LITHOLOG.3818,3818,L04693,,,,,06,JH,Pashchimi Singhbhum,Kumardungi,"Project High School,Andhari",22.1475,85.900833,04,2017-18,43.7,43.7,NA,Granite Gneiss,12.0,null,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,True,0.0
+LITHOLOG.3819,3819,L04694,,,,,06,JH,Pashchimi Singhbhum,Manjhari,"Bara Lagra, Manihi",22.3031,86.0075,04,2017-18,154.16,154.16,NA,Granite Gneiss,,null,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,True,0.0
+LITHOLOG.3820,3820,L04695,,,,,06,JH,Pashchimi Singhbhum,Manjhari,"High School,Putisia",22.3247,85.965833,04,2017-18,153.8,153.8,NA,Granite Gneiss,,null,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,True,0.0
+LITHOLOG.3821,3821,L04696,,,,,07,JH,Pashchimi Singhbhum,Majhgaon,"High School,Majhgaon",22.0686,85.881944,04,2017-18,29.3,29.3,NA,Granite Gneiss,,null,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,True,0.0
+LITHOLOG.3822,3822,L04697,,,,,07,JH,Pashchimi Singhbhum,Noamundi,"Govt. Primary School,Hatgamharia",22.208879,85.548277,04,2016-17,202.0,202,NA,Granite Gneiss,,null,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,True,0.0
+LITHOLOG.3823,3823,L04698,,,,,06,JH,Pashchimi Singhbhum,Tantnagar,Chittimiti,22.4058,85.943333,04,2017-18,100.46,100.46,NA,Granite Gneiss,7.1,null,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,True,0.0
+LITHOLOG.3824,3824,L04699,,,,,07,JH,Pashchimi Singhbhum,Tonto,Govt. Russel 10+2 School,22.3667,85.637,04,2016-17,153.8,153.8,NA,Granite Gneiss,0.77,null,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,True,0.0
+LITHOLOG.3825,3825,L04700,,,,,06,JH,Pashchimi Singhbhum,Tonto,"High School,Tonto",22.3811,85.732778,04,2017-18,153.8,153.8,NA,Granite Gneiss,0.8,null,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,True,0.0
+LITHOLOG.3826,3826,L04701,,,,,06,JH,Pashchimi Singhbhum,Tonto,"K.G.B. High School,Tonto",22.3881,85.746944,04,2017-18,153.8,153.8,NA,Granite Gneiss,1.2,null,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,True,0.0
+LITHOLOG.3845,3845,L04720,,,,,2A,JH,Ramgarh,Dulmi,Kulhi,23.4976,85.62637,04,2017-18,200.0,200,NA,Granite Gneiss,,42.28,0.11,NA,690,NA,29,NA,5.78,0.53,NA,NA,False,6.98
+LITHOLOG.3849,3849,L04724,,,,,06,JH,Ranchi,Bundu,"Govt. Middle School,Matamkbera",23.1667,85.573,04,2016-17,196.6,196.6,NA,Granite Gneiss,0.45,null,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,True,0.0
+LITHOLOG.3851,3851,L04726,,,,,06,JH,Ranchi,Kanke,"Bajarhat, Bukru",23.4772,85.309722,04,2012-13,159.7,159.7,NA,Chotanagpur Granite Gneiss,0.43,null,NA,NA,NA,NA,NA,NA,6.15,NA,NA,NA,False,4.62
+LITHOLOG.3852,3852,L04727,,,,,06,JH,Ranchi,Kanke,Dubaliya Middle School,23.4536,85.383333,04,2017-18,147.75,147.75,NA,Granite Gneiss,3.33,null,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,False,2.02
+LITHOLOG.3853,3853,L04728,,,,,06,JH,Ranchi,Kanke,"Mandatanr Field,Boreya Village",23.4292,85.354167,04,2012-13,48.0,48,NA,Chotanagpur Granite Gneiss,2.8,null,NA,NA,NA,NA,NA,NA,5.5,NA,NA,NA,True,0.0
+LITHOLOG.3854,3854,L04729,,,,,06,JH,Ranchi,Nagri,"Hec,Sector-Ii,Site-Iv(In The Volleyball Playground)",23.3325,85.291944,04,2012-13,159.7,159.7,NA,Chotanagpur Granite Gneiss,2.5,null,NA,NA,344,NA,35.5,3.7,11.1,0.25,NA,NA,True,0.0
+LITHOLOG.3855,3855,L04730,,,,,06,JH,Ranchi,Namkum,"Indian Institute Of Agriculture Biotechnology,Block-A,Garhkhatanga",23.2797,85.339167,04,2012-13,159.3,159.3,NA,Chotanagpur Granite Gneiss,,null,NA,NA,NA,NA,NA,NA,7.1,NA,NA,NA,True,0.0
+LITHOLOG.3856,3856,L04731,,,,,06,JH,Ranchi,Namkum,"Indian Institute Of Agriculture Biotechnology,Block-B,Garhkhatanga",23.2797,85.339167,04,2012-13,135.3,135.3,NA,Chotanagpur Granite Gneiss,,null,NA,NA,NA,NA,NA,NA,7.5,NA,NA,NA,True,0.0
+LITHOLOG.3857,3857,L04732,,,,,06,JH,Ranchi,Namkum,"Kasturba Gandhi High School,Jamchuan",23.2506,85.345833,04,2012-13,117.0,117,NA,Chotanagpur Granite Gneiss,6.66,10.63,37,NA,373,NA,10.6,4.8,11.4,0.45,NA,NA,True,0.0
+LITHOLOG.3858,3858,L04733,,,,,06,JH,Ranchi,Namkum,Mahilong Forest Nursery Campus,23.2506,85.345833,04,2012-13,167.5,167.5,NA,Chotanagpur Granite Gneiss,5.0,null,NA,NA,NA,NA,NA,NA,7.1,NA,NA,NA,True,0.0
+LITHOLOG.3859,3859,L04734,,,,,06,JH,Ranchi,Namkum,"Mahilong(Dipatola), In Front Of Hostel Of Forester Training School",23.36182,85.424433,04,2012-13,184.1,184.1,NA,Chotanagpur Granite Gneiss,1.0,null,NA,NA,NA,NA,NA,NA,4.5,NA,NA,NA,True,0.0
+LITHOLOG.3860,3860,L04735,,,,,06,JH,Ranchi,Ormanjhi,"Utkramit Middle School Campus,Baridih",23.4847,85.498611,04,2013-14,184.1,184.1,NA,Gondwana,2.5,null,NA,NA,295,NA,21.3,6.6,5.25,1.15,NA,NA,False,5.5
+LITHOLOG.3861,3861,L04736,,,,,07,JH,Ranchi,Nagri,Bandhea,23.2911,85.189722,04,2014-15,85.22,85.22,NA,Chotanagpur Granite Gneiss,4.5,6.48,41.66,NA,NA,NA,NA,NA,10.69,NA,NA,NA,True,0.0
+LITHOLOG.3862,3862,L04737,,,,,07,JH,Ranchi,Ratu,Ratu Block Office Campus,23.415904,85.230085,04,2012-13,184.1,184.1,NA,Chotanagpur Granite Gneiss,2.0,null,NA,NA,NA,NA,NA,NA,4.5,NA,NA,NA,True,0.0
+LITHOLOG.3863,3863,L04738,,,,,06,JH,Ranchi,Silli,"Basic Seed Multiplication And Training Centre,Dehridih",23.3014,85.8253,04,2016-17,181.4,181.4,NA,Granite Gneiss,4.5,null,NA,NA,NA,NA,NA,NA,12.2,NA,NA,NA,True,0.0
+LITHOLOG.3864,3864,L04739,,,,,06,JH,Ranchi,Tamar,"Govt. Middle School,Purnia",23.1,85.7607,04,2016-17,153.8,153.8,NA,Schist,4.5,null,NA,NA,NA,NA,NA,NA,11.2,NA,NA,NA,True,0.0
+LITHOLOG.3885,3885,L04760,,,,,06,JH,Saraikela-Kharsawan,Balarampur,Chaulibasa,22.956286,85.949244,04,2016-17,166.1,166.1,NA,Granite,4.2,null,NA,NA,NA,NA,NA,NA,10.2,NA,NA,NA,True,0.0
+LITHOLOG.3886,3886,L04761,,,,,06,JH,Saraikela-Kharsawan,Ichagarh,"Birsa High School,Ichagarh",23.1,85.85,04,2016-17,153.8,153.8,NA,Schist,,null,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,True,0.0
+LITHOLOG.3887,3887,L04762,,,,,06,JH,Saraikela-Kharsawan,Kharsawan,Asura High School,22.7681,85.8147,04,2016-17,153.8,153.8,NA,Granite Gneiss,0.45,null,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,True,0.0
+LITHOLOG.3888,3888,L04763,,,,,06,JH,Saraikela-Kharsawan,Kharsawan,Tantnagar High School,22.7681,85.8147,04,2016-17,153.8,153.8,NA,Granite Gneiss,2.5,null,NA,NA,NA,NA,NA,NA,8,NA,NA,NA,True,0.0
+LITHOLOG.3889,3889,L04764,,,,,06,JH,Saraikela-Kharsawan,Balarampur,Chota Hariyan,22.9167,86.156,04,2016-17,154.4,154.4,NA,Granite,7.0,null,NA,NA,NA,NA,NA,NA,8.2,NA,NA,NA,True,0.0
+LITHOLOG.3890,3890,L04765,,,,,06,JH,Saraikela-Kharsawan,Nimdih,"Jawahar Navodaya Vidyalya,Sijulata",23.0353,86.1108,04,2016-17,148.3,148.3,NA,Granite Gneiss,1.8,null,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,True,0.0
+LITHOLOG.3891,3891,L04766,,,,,06,JH,Saraikela-Kharsawan,Seraikela,Bharbharia Tasar Kendra,22.75,85.9416,04,2016-17,153.8,153.8,NA,Granite Gneiss,2.2,null,NA,NA,NA,NA,NA,NA,8,NA,NA,NA,True,0.0
+LITHOLOG.3892,3892,L04767,,,,,06,JH,Saraikela-Kharsawan,Seraikela,Manjhari High School,22.75,85.9416,04,2016-17,153.8,153.8,NA,Granite Gneiss,2.2,null,NA,NA,NA,NA,NA,NA,9,NA,NA,NA,True,0.0
+LITHOLOG.5640,5640,L06515,,,,,07,OD,Kendujhar,Joda,Badajhora 1,21.948056,85.397222,04,2014-15,150.0,NA,NA,NA,2.21,4.4,7.67,13.1,NA,NA,1070,213,NA,NA,0.44,NA,True,0.0
+LITHOLOG.5641,5641,L06516,,,,,07,OD,Kendujhar,Joda,Badajhora 2,21.948611,85.397778,04,2014-15,150.0,NA,NA,NA,3.24,1.5,10.4,NA,NA,NA,NA,NA,NA,NA,NA,NA,True,0.0
+LITHOLOG.7437,7437,L08312,,,,,2A,WB,Puruliya,Arsha,Goria  Ew,23.33,86.23,01,2017,190.04,NA,16.5,NA,,5.5,NA,NA,NA,NA,377.8,15,NA,4.05,1.32,NA,True,0.0
+LITHOLOG.7438,7438,L08313,,,,,2A,WB,Puruliya,Arsha,Goria  Ow,23.33,86.23,02,2017,65.3,NA,18.13,NA,,2.12,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,True,0.0
+LITHOLOG.7439,7439,L08314,,,,,2A,WB,Puruliya,Hura,Ladurkha  Ew,23.35,86.53,01,2018,200.5,NA,18.4,NA,,1.8,NA,NA,NA,NA,700,135,NA,13,NA,NA,True,0.0
+LITHOLOG.7440,7440,L08315,,,,,2A,WB,Puruliya,Hura,Ladurkha  Ow,23.35,86.53,02,2018,150.5,NA,18.5,NA,,1.8,NA,NA,NA,NA,690,124,NA,14,NA,NA,True,0.0
+LITHOLOG.7441,7441,L08316,,,,,2A,WB,Puruliya,Hura,Ladurkha (Sew),23.35,86.53,01,2018,60.3,NA,18.5,NA,,1.8,NA,NA,NA,NA,710,135,NA,14,NA,NA,True,0.0
+LITHOLOG.7442,7442,L08317,,,,,2A,WB,Puruliya,Hura,Lalpur  Ew,23.31,86.62,01,2018,200.5,NA,19.5,NA,,0.9,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,False,3.47
+LITHOLOG.7443,7443,L08318,,,,,2A,WB,Puruliya,Hura,Laxmanpur,23.34,86.57,04,2018,220.9,NA,12.26,NA,,0.2,NA,NA,NA,NA,185.1,42.5,NA,0.8,0.77,NA,True,0.0
+LITHOLOG.7445,7445,L08320,,,,,06,WB,Puruliya,Jhalda -I,Gokulnagar  Ew,23.352817,85.970972,01,2016,300.2,NA,6.1,NA,,Dry well,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,True,0.0
+LITHOLOG.7446,7446,L08321,,,,,06,WB,Puruliya,Jhalda -I,Ichag  Ew,23.33,85.93,01,2017,129.4,NA,19.5,NA,,1.8,NA,NA,NA,NA,470,28.4,NA,NA,0.31,NA,True,0.0
+LITHOLOG.7447,7447,L08322,,,,,06,WB,Puruliya,Jhalda -I,"Jhaldah-I, Bdo, Office",23.37,85.96,04,2017,200.0,NA,25.5,NA,,25.5,NA,NA,NA,NA,344,35.5,NA,1.33,1.18,NA,True,0.0
+LITHOLOG.7448,7448,L08323,,,,,06,WB,Puruliya,Jhalda -I,Mahatomara  Ew,23.423609,85.912432,01,2017,300.3,NA,48.5,NA,,Dry well,NA,NA,NA,NA,910.4,112.5,NA,1.8,1.4,NA,True,0.0
+LITHOLOG.7449,7449,L08324,,,,,06,WB,Puruliya,Jhalda -I,Mahatomara (Sew),23.42,85.91,01,2017,47.1,NA,45.5,NA,,1.3,NA,NA,NA,NA,625.5,95.6,34-42,0.08,1.21,NA,True,0.0
+LITHOLOG.7450,7450,L08325,,,,,06,WB,Puruliya,Jhalda -I,Tulin (Ew-I),23.383811,85.892423,01,2016,141.6,NA,16.4,NA,5.38,5,9.5,NA,NA,NA,NA,NA,NA,NA,NA,NA,True,0.0
+LITHOLOG.7451,7451,L08326,,,,,06,WB,Puruliya,Jhalda -I,Tulin (Ew-Ii),23.383811,85.892423,01,2017,233.1,NA,19,NA,5.85,8,13,NA,NA,NA,NA,NA,NA,NA,NA,NA,True,0.0
+LITHOLOG.7452,7452,L08327,,,,,06,WB,Puruliya,Jhalda -I,Tulin (Sew),23.383811,85.892423,01,2017,60.0,NA,18.38,NA,,0.9,NA,NA,NA,NA,390,42.6,NA,0.96,0.86,NA,True,0.0
+LITHOLOG.7453,7453,L08328,,,,,2A,WB,Puruliya,Jhalda -Ii,Kotshila (Ew-I),23.405472,86.07168,01,2016,172.1,NA,5.4,NA,2.02,0.5,8.43,NA,NA,NA,573,28.4,NA,NA,1.69,NA,True,0.0
+LITHOLOG.7454,7454,L08329,,,,,2A,WB,Puruliya,Jhalda -Ii,Kotshila (Ew-Ii),23.405472,86.07168,01,2016,220.9,NA,12,NA,2.05,Dry well,14.27,NA,NA,NA,620,35.5,NA,NA,1.48,NA,True,0.0
+LITHOLOG.7455,7455,L08330,,,,,2A,WB,Puruliya,Jhalda -Ii,Kotshila Ew_Iii),23.41,86.07,01,2017,111.1,NA,8.74,NA,,0.5,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,True,0.0
+LITHOLOG.7456,7456,L08331,,,,,2A,WB,Puruliya,Puncha,Lolara  Ew,23.17,86.66,01,2018,147.7,NA,18.5,NA,,2.2,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,False,7.37
+LITHOLOG.7457,7457,L08332,,,,,2A,WB,Puruliya,Puncha,Napara  Ew,23.23,86.65,01,2018,184.3,NA,21,NA,,3.34,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,False,6.43
+LITHOLOG.7458,7458,L08333,,,,,2A,WB,Puruliya,Purulia -I,"Ambagan, Phed  Ew",23.32554,86.343676,01,2016,151.5,NA,12.5,NA,12.8,4.4,21.7,NA,NA,NA,665,113.44,NA,26.35,0.51,NA,True,0.0
+LITHOLOG.7459,7459,L08334,,,,,2A,WB,Puruliya,Purulia -I,"Ambagan, Phed  Ow",23.32554,86.343676,02,2016,166.0,NA,8,NA,13.0,7,21.5,NA,NA,NA,774,124.08,NA,26.62,0.81,NA,True,0.0
+LITHOLOG.7460,7460,L08335,,,,,2A,WB,Puruliya,Purulia -I,Belguma  Ew,23.327075,86.345706,01,2016,300.4,NA,32.5,NA,12.9,3.4,23,NA,NA,NA,530,63.81,NA,23.73,0.36,NA,True,0.0
+LITHOLOG.7461,7461,L08336,,,,,2A,WB,Puruliya,Purulia -I,Belguma  Ow,23.327075,86.345706,02,2016,220.9,NA,20.2,NA,13.0,2.6,28,NA,NA,NA,639,74.45,NA,23.99,0.56,NA,True,0.0
+LITHOLOG.7462,7462,L08337,,,,,2A,WB,Puruliya,Purulia -Ii,Charrah  Ew,23.37,86.42,01,2018,200.5,NA,9.75,NA,,0.2,NA,NA,NA,NA,493,74.6,NA,22.19,0.66,NA,True,0.0
+LITHOLOG.7463,7463,L08338,,,,,2A,WB,Puruliya,Purulia -Ii,Charrah (Ew-Ii),23.37,86.42,01,2018,200.0,NA,12.5,NA,,0.2,NA,NA,NA,NA,386.2,70.9,NA,0.7,0.47,NA,True,0.0
+LITHOLOG.7464,7464,L08339,,,,,2A,WB,Puruliya,Purulia -Ii,Gangara  Ew,23.34,86.42,01,2018,200.5,NA,12.3,NA,,3,NA,NA,NA,NA,396.8,49.6,NA,0.1,0.27,NA,True,0.0
+LITHOLOG.7465,7465,L08340,,,,,2A,WB,Puruliya,Purulia -Ii,Gangara  Ow,23.34,86.42,02,2018,160.0,NA,13.3,NA,,2.5,NA,NA,NA,NA,359.2,60.3,NA,3.9,0.26,NA,True,0.0
+LITHOLOG.7466,7466,L08341,,,,,2A,WB,Puruliya,Purulia -Ii,Hutmura  Ew,23.35,86.47,01,2018,202.5,NA,8.1,NA,,0.3,NA,NA,NA,NA,1318,230.4,NA,4.3,0.29,NA,True,0.0
