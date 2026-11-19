@@ -40,6 +40,12 @@ row per registered file, for indexing the PDFs in an external repository:
 - drive_path, drive_url: location of the file's copy in the shared Google Drive
   folder, from catalogue/drive_files.csv (scripts/list_drive_files.py), joined on
   original_filename; blank when the file is not on Drive
+
+And catalogue/coverage_by_file_drive.csv, the Drive-side view of the same
+table for the spreadsheet kept next to the PDFs on Drive: only files that have
+a Drive copy, with ``path`` = the path inside the shared folder (not the
+repository ``local_path``, which is kept as ``repo_path``) and ``drive_url``
+first so each row opens its PDF.
 """
 
 import csv
@@ -55,6 +61,7 @@ SOURCES = ROOT / "catalogue" / "sources.csv"
 FILES = ROOT / "catalogue" / "files.csv"
 OUTPUT = ROOT / "catalogue" / "coverage.csv"
 OUTPUT_BY_FILE = ROOT / "catalogue" / "coverage_by_file.csv"
+OUTPUT_DRIVE = ROOT / "catalogue" / "coverage_by_file_drive.csv"
 DRIVE_FILES = ROOT / "catalogue" / "drive_files.csv"
 CGWB_PREFIX = "downloaded_data/cgwb/"
 PUBLICATION_PREFIXES = (CGWB_PREFIX, "downloaded_data/gsi/", "downloaded_data/papers/")
@@ -85,6 +92,13 @@ BY_FILE_COLUMNS = (
     "scope", "states", "n_districts", "districts", "blocks",
     "study_areas", "n_districts_in_study_area", "districts_in_study_area", "in_study_area",
     "drive_path", "drive_url",
+)
+DRIVE_COLUMNS = (
+    "path", "drive_url", "original_filename", "file_id", "source_id",
+    "title", "item_type", "coverage_level", "publication_date", "sampling_start", "sampling_end",
+    "scope", "states", "n_districts", "districts", "blocks",
+    "study_areas", "n_districts_in_study_area", "districts_in_study_area", "in_study_area",
+    "sha256", "size_bytes", "repo_path",
 )
 SCOPE_ORDER = ("block", "district", "state", "national")
 
@@ -126,6 +140,12 @@ def collapse_by_file(table: pd.DataFrame, files: pd.DataFrame) -> pd.DataFrame:
     )
     by_file = by_file.merge(drive_links(), on="original_filename", how="left", validate="many_to_one").fillna("")
     return by_file[list(BY_FILE_COLUMNS)]
+
+
+def drive_view(by_file: pd.DataFrame) -> pd.DataFrame:
+    """Rows held on Drive, addressed by their Drive path instead of the repository path."""
+    on_drive = by_file[by_file.drive_path.ne("")].rename(columns={"drive_path": "path", "local_path": "repo_path"})
+    return on_drive[list(DRIVE_COLUMNS)].sort_values("path")
 
 
 def canonical_district(name: str) -> str:
@@ -201,6 +221,9 @@ def main() -> int:
     by_file = collapse_by_file(table, files)
     by_file.to_csv(OUTPUT_BY_FILE, index=False)
     print(f"{len(by_file)} files -> {OUTPUT_BY_FILE.relative_to(ROOT)}")
+    on_drive = drive_view(by_file)
+    on_drive.to_csv(OUTPUT_DRIVE, index=False)
+    print(f"{len(on_drive)} files on Drive -> {OUTPUT_DRIVE.relative_to(ROOT)}")
     print(table.groupby(["item_type", "scope"]).size().to_string())
     district_rows = table[table.scope.isin(["district", "block"])]
     print(f"\ndistrict/block rows inside a study area: {district_rows.in_study_area.sum()} of {len(district_rows)}")

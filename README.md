@@ -246,7 +246,12 @@ The in-study-area PDFs are mirrored in a shared Google Drive folder.
 login) and writes `catalogue/drive_files.csv` (`drive_path`, `drive_file_id`,
 `drive_url` per item); `build_coverage.py` joins it on `original_filename` so
 every `coverage_by_file.csv` row carries `drive_path` and `drive_url` (blank
-when the file is not on Drive). Re-run both scripts after adding files to Drive.
+when the file is not on Drive). The same run writes
+`catalogue/coverage_by_file_drive.csv` for the spreadsheet kept on Drive: only
+the files with a Drive copy, addressed by `path` inside the shared folder
+(`study_area_files/odisha/Koraput.pdf`) with `drive_url` beside it, and the
+repository path demoted to `repo_path`. Re-run both scripts after adding files
+to Drive.
 
 `uv run python scripts/pack_study_area_files.py` zips the files with
 `in_study_area == True` (78 PDFs, ~480 MB) into
