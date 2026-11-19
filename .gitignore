@@ -1,3 +1,5 @@
 /downloaded_data/
 /raw/*
 !/raw/.gitkeep
+/data/nwdp/
+__pycache__/

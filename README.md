@@ -167,3 +167,33 @@ manual and six-hourly telemetry readings. Only that location's records from
 2021 onward are retained. The chart preserves raw signs and shows an overlapping
 date-range zoom; confirm measurement datum/sign conventions before comparing
 the two sources quantitatively.
+
+
+## Merge NWDP exports of the same nature
+
+Run `uv run python scripts/merge_nwdp_files.py` to compile the NWDP CSVs
+registered in `catalogue/files.csv` into one file per measurement type under
+`data/nwdp/`, for example `gwl_manual_quarterly.csv`,
+`gwl_telemetry_6_hourly.csv`, `gwq_chemical_manual.csv`,
+`gwq_physical_manual.csv`, `rwl_telemetry_hourly.csv` and one file per
+hourly climate variable. A file joins a group only when its measurement
+columns match that group exactly; an unrecognised header stops the run.
+
+Rows are streamed with the standard CSV reader, so values and column order
+are kept as delivered. The only changes are a leading `file_id` column
+(linking to `catalogue/files.csv`), the removal of the per-export `SlNo`
+counter, header normalisation of the degree-sign encoding variants, and the
+rename of the historical `Quadridaily` groundwater-level header to the
+six-hourly telemetry header. The 2026-2030 header-only exports are skipped;
+`merge_log.csv` records each file's group, detected encoding, row count and
+status. Sentinel values such as `-999`, sign conventions and outliers are
+not altered. `data/nwdp/` is a regenerable build output and is ignored by git.
+
+To restrict the merged files to a study area, list its locations in a CSV with
+`Latitude` and `Longitude` columns and run, for example,
+`uv run python scripts/filter_nwdp_by_locations.py data/jharkhand_locations.csv --name jharkhand_study_area`.
+Coordinates are matched after rounding both sides to five decimals, because
+location lists carry fewer decimals than the eight-decimal NWDP exports. Rows
+are copied unchanged into `data/nwdp/<name>/`, one file per group that has
+matches; `filter_log.csv` gives rows and locations per group and
+`unmatched_locations.csv` lists locations found in no merged file.

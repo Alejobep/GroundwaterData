@@ -123,7 +123,7 @@ import folium
 # folium.LayerControl(collapsed=False).add_to(m)
 
 
-jharkhand_df = pd.read_csv("data/station_locations.csv")
+jharkhand_df = pd.read_csv("data/jharkhand_locations.csv")
 odisha_df = pd.read_csv("data/odisha_locations.csv")
 
 for idx, row in jharkhand_df.iterrows():
