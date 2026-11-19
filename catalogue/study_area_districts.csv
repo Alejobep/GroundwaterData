@@ -1,0 +1,17 @@
+study_area,state,district,dt_code,overlap_km2,pct_of_district,pct_of_study_area,gwr_focus_district
+jharkhand,Odisha,Sundargarh,374,7102.9,75.7,14.6,False
+jharkhand,Jharkhand,West Singhbhum,368,6964.5,100.0,14.3,True
+jharkhand,Jharkhand,Gumla,366,4883.3,94.7,10.0,False
+jharkhand,Odisha,Mayurbhanj,376,4098.3,40.9,8.4,False
+jharkhand,Jharkhand,Simdega,367,3609.3,100.0,7.4,True
+jharkhand,Jharkhand,Ranchi,364,3445.4,71.5,7.1,False
+jharkhand,Jharkhand,East Singhbhum,357,2581.3,75.0,5.3,False
+jharkhand,Jharkhand,Saraikela-Kharsawan,369,2547.3,100.0,5.2,False
+jharkhand,Jharkhand,Khunti,365,2521.7,100.0,5.2,True
+jharkhand,Odisha,Kendujhar,375,1206.7,15.1,2.5,False
+jharkhand,Odisha,Jharsuguda,371,642.9,32.1,1.3,False
+jharkhand,Odisha,Sambalpur,372,585.6,9.1,1.2,False
+jharkhand,Jharkhand,Lohardaga,356,528.9,36.7,1.1,False
+jharkhand,Jharkhand,Latehar,359,261.4,6.3,0.5,False
+odisha,Odisha,Koraput,398,3904.9,48.1,55.0,True
+odisha,Odisha,Malkangiri,399,1784.1,31.9,25.1,False

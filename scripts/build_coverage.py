@@ -1,6 +1,7 @@
 """Build catalogue/coverage.csv: one row per publication file and administrative area it covers.
 
-Covers the CGWB reports under downloaded_data/cgwb/ and the journal articles
+Covers the CGWB reports under downloaded_data/cgwb/, the GSI state geology
+volumes under downloaded_data/gsi/ and the journal articles
 under downloaded_data/papers/. Reads catalogue/sources.csv and
 catalogue/files.csv, parses the ``area`` field
 (``State:District`` or ``State:District:Block`` entries separated by ``;``),
@@ -36,6 +37,9 @@ row per registered file, for indexing the PDFs in an external repository:
 - study_areas: ``;``-separated outlines the file touches
 - n_districts_in_study_area, districts_in_study_area: districts intersecting an outline
 - in_study_area: True when any row of the file is in a study area
+- drive_path, drive_url: location of the file's copy in the shared Google Drive
+  folder, from catalogue/drive_files.csv (scripts/list_drive_files.py), joined on
+  original_filename; blank when the file is not on Drive
 """
 
 import csv
@@ -51,8 +55,9 @@ SOURCES = ROOT / "catalogue" / "sources.csv"
 FILES = ROOT / "catalogue" / "files.csv"
 OUTPUT = ROOT / "catalogue" / "coverage.csv"
 OUTPUT_BY_FILE = ROOT / "catalogue" / "coverage_by_file.csv"
+DRIVE_FILES = ROOT / "catalogue" / "drive_files.csv"
 CGWB_PREFIX = "downloaded_data/cgwb/"
-PUBLICATION_PREFIXES = (CGWB_PREFIX, "downloaded_data/papers/")
+PUBLICATION_PREFIXES = (CGWB_PREFIX, "downloaded_data/gsi/", "downloaded_data/papers/")
 
 # Catalogue spellings -> polygon spellings. Source text is kept in area_as_given.
 DISTRICT_ALIASES = {
@@ -79,6 +84,7 @@ BY_FILE_COLUMNS = (
     "title", "item_type", "coverage_level", "publication_date", "sampling_start", "sampling_end",
     "scope", "states", "n_districts", "districts", "blocks",
     "study_areas", "n_districts_in_study_area", "districts_in_study_area", "in_study_area",
+    "drive_path", "drive_url",
 )
 SCOPE_ORDER = ("block", "district", "state", "national")
 
@@ -87,8 +93,16 @@ def joined(values: pd.Series) -> str:
     return ";".join(sorted(set(filter(None, values))))
 
 
+def drive_links() -> pd.DataFrame:
+    """original_filename -> drive_path/drive_url from catalogue/drive_files.csv (empty if not built yet)."""
+    if not DRIVE_FILES.exists():
+        return pd.DataFrame(columns=["original_filename", "drive_path", "drive_url"])
+    drive = pd.read_csv(DRIVE_FILES, dtype=str, keep_default_na=False)
+    return drive[["original_filename", "drive_path", "drive_url"]]
+
+
 def collapse_by_file(table: pd.DataFrame, files: pd.DataFrame) -> pd.DataFrame:
-    """One row per file: the long coverage rows summarised as delimited lists."""
+    """One row per file: the long coverage rows summarised as delimited lists, plus Drive links."""
     records = []
     for file_id, group in table.groupby("file_id", sort=False):
         first = group.iloc[0]
@@ -110,6 +124,7 @@ def collapse_by_file(table: pd.DataFrame, files: pd.DataFrame) -> pd.DataFrame:
     by_file = pd.DataFrame(records).merge(
         files[["file_id", "original_filename", "sha256", "size_bytes"]], on="file_id", how="left", validate="one_to_one"
     )
+    by_file = by_file.merge(drive_links(), on="original_filename", how="left", validate="many_to_one").fillna("")
     return by_file[list(BY_FILE_COLUMNS)]
 
 

@@ -4,7 +4,7 @@
 Scans a root folder recursively, matches files by name against
 ``catalogue/coverage_by_file.csv`` (rows with ``in_study_area == True``) and
 copies the matches into ``<root>/<subfolder>/<category>/``, where category is
-``papers``, ``jharkhand``, ``odisha`` or ``national`` as recorded in the
+``papers``, ``jharkhand``, ``odisha``, ``national`` or ``geology/<state>`` as recorded in the
 catalogue (``--layout tree`` keeps the subfolder layout found under root,
 ``--layout flat`` puts everything in one folder). Only the Python standard
 library is required, so it runs on a stock macOS Python.
@@ -40,10 +40,15 @@ def load_targets(csv_path: Path) -> dict[str, dict[str, str]]:
 
 
 def category_of(row: dict[str, str]) -> str:
-    """papers / jharkhand / odisha / national, taken from the catalogue path."""
+    """papers / jharkhand / odisha / national / geology/<state>, taken from the catalogue path."""
     parts = Path(row["local_path"]).parts
     if "papers" in parts:
         return "papers"
+    if "gsi" in parts:
+        idx = parts.index("gsi")
+        if idx + 2 < len(parts):
+            return f"geology/{parts[idx + 1]}"
+        return "geology"
     if "cgwb" in parts:
         idx = parts.index("cgwb")
         if idx + 2 < len(parts):
@@ -68,7 +73,7 @@ def main() -> int:
         "--layout",
         choices=("category", "tree", "flat"),
         default="category",
-        help="category: <subfolder>/<papers|jharkhand|odisha|national>/ (default); "
+        help="category: <subfolder>/<papers|jharkhand|odisha|national|geology/<state>>/ (default); "
         "tree: mirror the source subfolders; flat: everything in <subfolder>/",
     )
     ap.add_argument("--verify", action="store_true", help="Check SHA-256 against the catalogue before copying")

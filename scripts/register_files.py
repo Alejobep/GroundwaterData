@@ -19,6 +19,8 @@ ROOT = Path(__file__).resolve().parent.parent
 SOURCES = ROOT / "catalogue" / "sources.csv"
 FILES = ROOT / "catalogue" / "files.csv"
 SCAN_ROOTS = ("raw", "downloaded_data")
+# Derived products written by our own scripts, not originals; never registered.
+DERIVED_DIRS = (ROOT / "downloaded_data" / "nwdp" / "merged",)
 FILE_COLUMNS = (
     "file_id", "source_id", "original_filename", "local_path", "format",
     "size_bytes", "sha256", "retrieved_on", "filters_applied", "notes",
@@ -65,6 +67,7 @@ def unclaimed_files(owner: dict[Path, str]) -> list[Path]:
         for scan_root in SCAN_ROOTS
         for path in sorted((ROOT / scan_root).rglob("*"))
         if path.is_file() and not path.name.startswith(".") and path not in owner
+        and not any(path.is_relative_to(derived) for derived in DERIVED_DIRS)
     ]
 
 

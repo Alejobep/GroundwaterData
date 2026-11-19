@@ -71,12 +71,24 @@ zoom. This is coverage screening, not a water-quality risk map or release packag
 
 ## Preview the interactive boundary map
 
-From the repository root, run `uv run python src/groundwaterdata/test.py` and
-open `map.html` in a browser. The Jharkhand and Odisha boundary layers draw
-thin district lines and overlay thicker state outlines computed by merging
+From the repository root, run `uv run python src/groundwaterdata/build_map.py`
+and open `index.html` in a browser. The Jharkhand and Odisha boundary layers
+draw thin district lines and overlay thicker state outlines computed by merging
 each state's districts. The layer menu groups overlays under **Political
-Boundaries** and **Study Areas**, with a separate checkbox for each state in
-each group.
+Boundaries**, **Study Areas**, **Overlapping Districts**, **WRIS Lithologs** and
+**NWDP Locations**, with a separate checkbox for each state in each group.
+
+### Station time-series popups
+
+When the filtered NWDP files exist under `data/nwdp/<area>_study_area/` (see
+`scripts/filter_nwdp_by_locations.py`), the build also writes one Plotly page
+per location to `stations/` and links it from the NWDP marker: the tooltip lists
+the station name(s) and the records available (type, count, year span), and
+clicking opens the page in the popup. Pages load plotly.js from a CDN and are
+fetched only on click, so `index.html` stays small; keep `stations/` next to it
+when publishing. For plotting only, hourly telemetry is reduced to daily means
+(daily totals for rainfall), placeholder values such as `-999` are masked, and
+groundwater levels beyond 500 m are treated as glitches — the CSVs are untouched.
 
 ## Large Odisha water-level files
 
@@ -201,7 +213,8 @@ matches; `filter_log.csv` gives rows and locations per group and
 ## Source coverage by district
 
 Run `uv run python scripts/build_coverage.py` to write `catalogue/coverage.csv`,
-one row per publication file (CGWB reports under `downloaded_data/cgwb/` and
+one row per publication file (CGWB reports under `downloaded_data/cgwb/`, GSI
+state geology volumes under `downloaded_data/gsi/` and
 journal articles under `downloaded_data/papers/`) and administrative area it
 covers. Each row carries `file_id` and `local_path` so the opaque download names
 (for example `1742896698840549400file.pdf` or `1-s2.0-S2212613915000355-main.pdf`)
@@ -222,14 +235,21 @@ counting district-level evidence. Filter on `item_type` (`report`/`article`) to
 separate the two collections.
 
 The same run also writes `catalogue/coverage_by_file.csv`: the long table
-collapsed to exactly one row per registered PDF (145 files), with
+collapsed to exactly one row per registered PDF (148 files), with
 `original_filename`, `sha256` and `size_bytes` from `files.csv` and the
 districts, blocks and study areas as `;`-separated lists. Use this one to index
 the PDFs held in an external repository; use `coverage.csv` when you need to
 filter by district.
 
+The in-study-area PDFs are mirrored in a shared Google Drive folder.
+`uv run python scripts/list_drive_files.py` walks that folder (public link, no
+login) and writes `catalogue/drive_files.csv` (`drive_path`, `drive_file_id`,
+`drive_url` per item); `build_coverage.py` joins it on `original_filename` so
+every `coverage_by_file.csv` row carries `drive_path` and `drive_url` (blank
+when the file is not on Drive). Re-run both scripts after adding files to Drive.
+
 `uv run python scripts/pack_study_area_files.py` zips the files with
-`in_study_area == True` (75 PDFs, ~445 MB) into
+`in_study_area == True` (78 PDFs, ~480 MB) into
 `downloaded_data/study_area_publications.zip`, preserving the
 `downloaded_data/...` tree and embedding the matching `coverage_by_file.csv`
 rows as a manifest. Each file's SHA-256 is checked against `files.csv` before

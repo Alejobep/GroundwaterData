@@ -6,6 +6,7 @@ import geopandas as gpd
 import pandas as pd
 from folium.plugins import GroupedLayerControl, MarkerCluster
 
+from groundwaterdata import station_pages
 from groundwaterdata.study_areas import load_districts, overlapping_districts
 
 points = pd.read_csv("data/station_locations.csv").dropna(
@@ -129,11 +130,31 @@ def draw_wris_layer(path: Path, color: str, layer_name: str) -> folium.FeatureGr
     return layer
 
 
-def draw_locations(path: Path, color: str, layer_name: str) -> folium.FeatureGroup:
-    """Station locations inside a study area (from the notebook's 10 km filter)."""
+def draw_locations(
+    path: Path, nwdp_dir: Path, color: str, layer_name: str
+) -> folium.FeatureGroup:
+    """Station locations inside a study area (from the notebook's 10 km filter).
+
+    When the merged NWDP files for the area exist under data/nwdp/, each marker
+    gets a tooltip summarising the available records and a popup with an
+    interactive time-series page written to stations/.
+    """
     layer = folium.FeatureGroup(name=layer_name).add_to(m)
     locations = pd.read_csv(path).dropna(subset=["Latitude", "Longitude"])
+    nwdp = station_pages.load_locations(nwdp_dir)
+    pages = station_pages.write_pages(nwdp, STATION_PAGES_DIR)
+
     for row in locations.itertuples(index=False):
+        coordinate = station_pages.rounded(row.Latitude, row.Longitude)
+        data = nwdp.get(coordinate)
+        tooltip = f"{row.Latitude:.5f}, {row.Longitude:.5f}"
+        popup = None
+        if data is not None and coordinate in pages:
+            tooltip = station_pages.tooltip_html(data)
+            popup = folium.Popup(
+                station_pages.popup_html(f"{STATION_PAGES_DIR.name}/{pages[coordinate]}", data),
+                max_width=760,
+            )
         folium.CircleMarker(
             location=[row.Latitude, row.Longitude],
             radius=2.5,
@@ -142,13 +163,16 @@ def draw_locations(path: Path, color: str, layer_name: str) -> folium.FeatureGro
             fill=True,
             fill_color=color,
             fill_opacity=0.7,
-            tooltip=f"{row.Latitude:.5f}, {row.Longitude:.5f}",
+            tooltip=tooltip,
+            popup=popup,
         ).add_to(layer)
     return layer
 
 
 district_paths = [jharkhand_pol_bound_path, odisha_pol_bound_path]
 wris_path = data_path / "wris"
+nwdp_path = data_path / "nwdp"
+STATION_PAGES_DIR = Path("stations")
 
 GroupedLayerControl(
     groups={
@@ -169,12 +193,16 @@ GroupedLayerControl(
             draw_wris_layer(wris_path / "odisha_study_area" / "Litholog.geojson", "#b2182b", "Odisha"),
         ],
         "NWDP Locations (10 km buffer)": [
-            draw_locations(data_path / "jharkhand_locations.csv", "#3388ff", "Jharkhand"),
-            draw_locations(data_path / "odisha_locations.csv", "#ff5733", "Odisha"),
+            draw_locations(
+                data_path / "jharkhand_locations.csv", nwdp_path / "jharkhand_study_area", "#3388ff", "Jharkhand"
+            ),
+            draw_locations(
+                data_path / "odisha_locations.csv", nwdp_path / "odisha_study_area", "#ff5733", "Odisha"
+            ),
         ],
     },
     exclusive_groups=False,
     base_layers=[basemap],
 ).add_to(m)
 
-m.save("map.html")
+m.save("index.html")
